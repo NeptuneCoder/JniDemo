@@ -55,4 +55,9 @@ final AndroidJni androidJni = new AndroidJni();
 
 
 注意：生成的头文件是由包名+类名+方面名组成的。
-以后问基础内容.
+以上为基础内容.
+[参考资料1](http://www.jianshu.com/p/aba734d5b5cd)
+[参考资料2](http://www.cnblogs.com/eddy-he/archive/2012/08/08/2628676.html)
+[参考资料3](http://www.cnblogs.com/wi100sh/p/5178668.html)
+[参考资料4](http://www.xpabc.com/xpabc/article/show/189.htm)
+[android开发艺术探究14章]()
