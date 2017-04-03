@@ -1,10 +1,11 @@
 这是一个调用JNI的demo,记录jni技术相关的知识点，为以后的学习做好笔记；
-
+----
 整体描述：
 声明还有native描述的方法的java类，通过对应的.class文件生成C/C++的头文件（头文件是一种包含功能函数、数据接口声明的载体文件）。
 然后在main目录下新建一个文件夹（文件夹名字随意,项目中该目录名称为jni），将生成的头文件copy该目录下，再定义Android.mk和Application.mk文件（具体含义查阅文档，项目中已经写好了）
 这个时候新建C/C++文件，就可以实现自己定义的方法体了。最后就需要配置自己的ndk环境和gradle.properties文件中android.useDeprecatedNdk = true属性值。
 在main目录下，使用ndk-build命令编译生成对应的so文件。最后将生成的so文件copy到android stdio工程中默认的jniLibs目录下就ok了。
+
 ------
 具体实现步骤如下：
 1. 新建含有native方法的java类；
