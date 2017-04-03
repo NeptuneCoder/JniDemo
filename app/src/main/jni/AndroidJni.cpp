@@ -17,7 +17,8 @@ Java_jni_yh_com_jnidemo_AndroidJni_getHelloWordText(JNIEnv *env, jobject thiz) {
 
 JNIEXPORT jstring JNICALL
 Java_jni_yh_com_jnidemo_AndroidJni_setUserName(JNIEnv *env, jobject thiz, jstring result) {
-
+//    const char * str_buf = env->GetStringChars(result);
+//    printf("constent is %s", str_buf);
     return env->NewStringUTF("this  is  have param method!");
 
 }
