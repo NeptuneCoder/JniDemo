@@ -9,7 +9,7 @@ package jni.yh.com.jnidemo;
 public class AndroidJni {
     //这里的名字必须和Android.mk中的LOCAL_MODULE    := androidJni配置名字相同。
     static {
-        System.loadLibrary("androidJni");
+        System.loadLibrary("android-Jni");
     }
 
     public native String getHelloWordText();

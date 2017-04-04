@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         contentTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, androidJni.setUserName("yanghai"), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, androidJni.setUserName("yh"), Toast.LENGTH_LONG).show();
             }
         });
 

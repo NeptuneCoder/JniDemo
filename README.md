@@ -55,7 +55,7 @@ final AndroidJni androidJni = new AndroidJni();
         contentTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, androidJni.setUserName("yanghai"), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, androidJni.setUserName("yh"), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -75,3 +75,9 @@ final AndroidJni androidJni = new AndroidJni();
  [参考资料4](http://www.xpabc.com/xpabc/article/show/189.htm)
  
  [android开发艺术探究14章]()
+
+
+####二 编译多个源文件
+需要在android.mk 文件中的LOCAL_SRC_FILES :的值通过 空格 + \ + 空格 +新增加要编译的文件，如下： 
+LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
+

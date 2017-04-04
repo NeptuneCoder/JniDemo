@@ -15,7 +15,8 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := androidJni
-LOCAL_SRC_FILES := AndroidJni.cpp
+
+LOCAL_MODULE    := android-Jni
+LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
 
 include $(BUILD_SHARED_LIBRARY)
