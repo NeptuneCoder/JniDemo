@@ -78,7 +78,18 @@ final AndroidJni androidJni = new AndroidJni();
 
 
 ####二 编译多个源文件
-需要在android.mk 文件中的LOCAL_SRC_FILES :的值通过 空格 + \ + 空格 +新增加要编译的文件，如下： 
+需要在android.mk 文件中的LOCAL_SRC_FILES :的值通过 空格 + \ + 空格 +新增加要编译的文件，如下：
+ ```
 LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
-
+```
 [参考资料](http://www.eoeandroid.com/blog-1179893-48781.html)
+
+####三
+在编译工程时，如果需要依赖完整的C++库需要在Application.mk文件中配置如下：
+
+```
+APP_STL:=c++_static
+LOCAL_CPPFLAGS  += -std=c++11
+```
+
+[参考资料](http://stackoverflow.com/questions/32188853/ndk-not-identifying-certain-header-files-like-mutex-and-future)
