@@ -51,8 +51,9 @@ JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
         (JNIEnv *, jobject, jstring) {
     TestInclude ti;
     int resVlaue = ti.add(3, 3);
+    int resVlaue1 = ti.addV(3, 3, 1);
     printf("value---------------- = %d", resVlaue);
-    return resVlaue;
+    return resVlaue + resVlaue1;
 }
 /**
 
