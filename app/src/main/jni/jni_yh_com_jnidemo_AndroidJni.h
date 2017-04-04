@@ -23,6 +23,14 @@ JNIEXPORT jstring JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getHelloWordText
 JNIEXPORT jstring JNICALL Java_jni_yh_com_jnidemo_AndroidJni_setUserName
   (JNIEnv *, jobject, jstring);
 
+/*
+ * Class:     jni_yh_com_jnidemo_AndroidJni
+ * Method:    getResult
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
+  (JNIEnv *, jobject, jstring);
+
 #ifdef __cplusplus
 }
 #endif

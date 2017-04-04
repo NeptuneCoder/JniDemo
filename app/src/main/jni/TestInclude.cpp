@@ -4,6 +4,11 @@
 
 #include "TestInclude.h"
 
-int add(int a, int b) {
+//实现该方法时，类名+"::"+方法名
+int TestInclude::add(int a, int b) {
     return a + b;
+}
+
+int TestInclude::addV(int a, int b, int c) {
+    return a + b + c;
 }

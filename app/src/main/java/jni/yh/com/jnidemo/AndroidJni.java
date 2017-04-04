@@ -15,4 +15,5 @@ public class AndroidJni {
     public native String getHelloWordText();
 
     public native String setUserName(String name);
+    public native int getResult(String name);
 }

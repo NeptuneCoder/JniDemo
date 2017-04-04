@@ -81,3 +81,4 @@ final AndroidJni androidJni = new AndroidJni();
 需要在android.mk 文件中的LOCAL_SRC_FILES :的值通过 空格 + \ + 空格 +新增加要编译的文件，如下： 
 LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
 
+[参考资料](http://www.eoeandroid.com/blog-1179893-48781.html)

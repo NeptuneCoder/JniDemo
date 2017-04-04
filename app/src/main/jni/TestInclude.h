@@ -9,6 +9,9 @@
 class TestInclude {
 public:
     int add(int a, int b);
+
+public:
+    int addV(int a, int b, int c);
 };
 
 

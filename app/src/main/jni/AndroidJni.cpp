@@ -3,6 +3,7 @@
 //
 #include <string.h>
 #include <jni.h>
+#include <stdio.h>
 #include "jni_yh_com_jnidemo_AndroidJni.h"
 #include "TestInclude.h"
 
@@ -35,17 +36,24 @@ Java_jni_yh_com_jnidemo_AndroidJni_setUserName(JNIEnv *env, jobject thiz, jstrin
 //    if (str == NULL) { //不要忘记检测，否则分配内存失败会抛出异常
 //        return NULL; /* OutOfMemoryError already thrown */
 //    }
-////    printf("%s", str);
+//    printf("%s", str);
 //
 //    env->ReleaseStringUTFChars(jstr, str);
 //
 //    /* We assume here that the user does not type more than  * 127 characters */
 //    scanf("%s", buf);
-    return env->NewStringUTF("this is test code");
 
+//    jstring  result = resVlaue+"this is test code";
+    return env->NewStringUTF("test");
 }
 
-
+JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
+        (JNIEnv *, jobject, jstring) {
+    TestInclude ti;
+    int resVlaue = ti.add(3, 3);
+    printf("value---------------- = %d", resVlaue);
+    return resVlaue;
+}
 /**
 
 * 工具方法
@@ -59,37 +67,3 @@ Java_jni_yh_com_jnidemo_AndroidJni_setUserName(JNIEnv *env, jobject thiz, jstrin
 * 返回值 : 一个c语言中的char数组的首地址 (char 字符串)
 
 */
-
-//char *Jstring2CStr(JNIEnv *env, jstring jstr) {
-//    char *rtn = NULL;
-//    jclass clsstring = env->FindClass(env, "java/lang/String");
-//
-//    jstring strencode = env->NewStringUTF(env, "GB2312");
-//
-//    jmethodID mid =
-//            env->GetMethodID(env, clsstring, "getBytes", "(Ljava/lang/String;)[B");
-//
-//// String.getByte("GB2312");
-//
-//    jbyteArray barr =
-//
-//            (jbyteArray) env->CallObjectMethod(env, jstr, mid, strencode);
-//
-//    jsize alen = env->GetArrayLength(env, barr);
-//
-//    jbyte *ba = env->GetByteArrayElements(env, barr, JNI_FALSE);
-//
-//    if (alen > 0) {
-//
-//        rtn = (char *) malloc(alen + 1); //"\0"
-//
-//        memcpy(rtn, ba, alen);
-//
-//        rtn[alen] = 0;
-//
-//    }
-//
-//    env->ReleaseByteArrayElements(env, barr, ba, 0); //
-//
-//    return rtn;
-//}
