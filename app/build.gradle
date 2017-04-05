@@ -3,6 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    sourceSets {
+        main {
+            jni.srcDirs = ["jniSrc"]
+        }
+    }
     defaultConfig {
         applicationId "jni.yh.com.jnidemo"
         minSdkVersion 22
@@ -10,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk{
+        ndk {
             moduleName "AndroidJni"
             abiFilters "armeabi", "armeabi-v7a", "x86"
         }

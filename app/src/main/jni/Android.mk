@@ -18,5 +18,6 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := android-Jni
 LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
-
+LOCAL_LDLIBS += -llog
+#LOCAL_CPPFLAGS  += -std=c++11
 include $(BUILD_SHARED_LIBRARY)

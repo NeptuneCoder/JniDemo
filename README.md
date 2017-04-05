@@ -9,7 +9,7 @@
 
 ------
 具体实现步骤如下：
-1. 新建含有native方法的java类；
+1. 新建含有native方法的java类；(编译成对应的.class文件)
 2. 生成对应的头文件
 ```
 //到该
@@ -20,7 +20,7 @@ javah -d jni jni.yh.com.jnidemo.AndroidJni
 //生成头文件
 javah -d jni 完整的包名+类名
 ```
-3. 在mian目录下新建名为jni的文件夹
+3. 在main目录下新建名为jni的文件夹（jni名词可修改，如果修改的话，需要额外的配置）
 4. 将生成的头文件copy该目录下
 5. 新建具体的实现类AdroidJni.cpp
 6. 新建Android.mk,该文件指定要编译的C源文件和生成的库名，这两个很重要
@@ -93,3 +93,39 @@ LOCAL_CPPFLAGS  += -std=c++11
 ```
 
 [参考资料](http://stackoverflow.com/questions/32188853/ndk-not-identifying-certain-header-files-like-mutex-and-future)
+
+
+#### 四 应用项目中的配置
+ 由于在应用项目中，使用到了C++的完整库，Application.mk配置如下
+ ```
+ #指定编译那些cpu类型的so文件
+ #armeabi,x86,x86_64,armeabi-v7a,arm64-v8a
+ 
+ #下面代码片段编译的so文件 mutex no such file or directory
+ APP_ABI := armeabi,x86,x86_64,armeabi-v7a,arm64-v8a
+ 
+ APP_STL:=c++_static
+ APP_STL:=gnustl_static
+ 
+ APP_CFLAGS   += -DHAVE_PTHREADS -DHAVE_ANDROID_OS=1
+ APP_CXXFLAGS += -DHAVE_PTHREADS -DHAVE_ANDROID_OS=1
+ 
+ 
+ APP_CPPFLAGS += -std=c++11
+ #NDK 为 libc++ 提供了预建的静态和共享库，但您也可以在构建之前将以下行添加到 Application.mk 文件或者在环境中设置它，强制 NDK 从来源构建 libc++：
+ LIBCXX_FORCE_REBUILD := true
+ ```
+ 
+ Android.mk 配置如下：
+ ```
+ LOCAL_PATH := $(call my-dir)
+ 
+ include $(CLEAR_VARS)
+ 
+ LOCAL_MODULE    := http-jni
+ LOCAL_SRC_FILES := HttpJni.cpp \ Socket.hpp
+ LOCAL_LDLIBS += -llog
+ 
+ include $(BUILD_SHARED_LIBRARY)
+
+ ```
