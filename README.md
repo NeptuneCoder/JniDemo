@@ -25,7 +25,7 @@ javah -d jni 完整的包名+类名
 3. 在main目录下新建名为jni的文件夹（jni名词可修改，如果修改的话，需要在gradle里面的配置，不然会出现找不到文件的情况）
 4. 将生成的头文件copy该目录下
 5. 新建具体的实现类AdroidJni.cpp
-6. 新建Android.mk,该文件指定要编译的C源文件和生成的库名，这两个参数很重要，[如果是编译多个文件](#jump)
+6. 新建Android.mk,该文件指定要编译的C源文件和生成的库名，这两个参数很重要，[如果是编译多个文件](jump)
 ```
 LOCAL_MODULE    := AndroidJni
 LOCAL_SRC_FILES := AndroidJni.cpp
