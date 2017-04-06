@@ -101,7 +101,7 @@ LOCAL_CPPFLAGS  += -std=c++11
 [参考资料](http://stackoverflow.com/questions/32188853/ndk-not-identifying-certain-header-files-like-mutex-and-future)
 
 
-#### 四 应用项目中的配置
+#### 四 应用项目中的配置 
  由于在应用项目中，使用到了C++的完整库，Application.mk配置如下
  ```
  #指定编译那些cpu类型的so文件
@@ -135,3 +135,4 @@ LOCAL_CPPFLAGS  += -std=c++11
  include $(BUILD_SHARED_LIBRARY)
 
  ```
+ 心得：如果需要一些特殊的库，需要在Android.mk 或Application.mk里面配置。
