@@ -165,3 +165,33 @@ LOCAL_CPPFLAGS  += -std=c++11
  
  5.3     env->CallStaticVoidMethod(clazz, callMethodStr, str);
  调用方法时，需要注意方法名，静态方法，非静态方法，有返回类型等，对应的是不同的方法。
+
+
+### 六 调用通用的方法，修改代码结构
+#### 调用方法
+```
+    jstring str = env->NewStringUTF("这是c++中的一个字符串，调用通用的方法，传递给方法中");
+    customMethod(env,str);
+```
+
+#### 通用方法
+```
+void customMethod(JNIEnv *env, jstring str) {
+    jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
+    if (NULL == clazz) {
+//        LOGW("can't find clazz");
+        return;
+    }
+    jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr",
+                                                     "(Ljava/lang/String;)V");
+    if (NULL == callMethodStr) {
+        env->DeleteLocalRef(clazz);
+//        LOGW("can't find method callMethod from clazz ");
+        return;
+    }
+//    env->CallStaticObjectMethod(clazz, callMethodStr);
+
+    env->CallStaticVoidMethod(clazz, callMethodStr, str);
+    env->DeleteLocalRef(clazz);
+}
+```

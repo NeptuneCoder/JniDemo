@@ -14,6 +14,7 @@
  *   apps/samples/hello-jni/project/src/com/example/HelloJni/HelloJni.java
  */
 //char *Jstring2CStr(JNIEnv *env, jstring jstr);
+void customMethod(JNIEnv *, jstring);
 
 JNIEXPORT jstring JNICALL
 Java_jni_yh_com_jnidemo_AndroidJni_getHelloWordText(JNIEnv *env, jobject thiz) {
@@ -48,7 +49,7 @@ Java_jni_yh_com_jnidemo_AndroidJni_setUserName(JNIEnv *env, jobject thiz, jstrin
 }
 
 JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
-        (JNIEnv *, jobject, jstring) {
+        (JNIEnv *env, jobject, jstring) {
     TestInclude ti;
     int resVlaue = ti.add(3, 3);
     int resVlaue1 = ti.addV(3, 3, 1);
@@ -58,20 +59,26 @@ JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
 
 JNIEXPORT void JNICALL Java_jni_yh_com_jnidemo_AndroidJni_callMethod
         (JNIEnv *env, jobject thiz) {
+
+    jstring str = env->NewStringUTF("这是c++中的一个字符串，调用通用的方法，传递给方法中");
+    customMethod(env,str);
+}
+
+void customMethod(JNIEnv *env, jstring str) {
     jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
     if (NULL == clazz) {
 //        LOGW("can't find clazz");
         return;
     }
-    jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr", "(Ljava/lang/String;)V");
+    jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr",
+                                                     "(Ljava/lang/String;)V");
     if (NULL == callMethodStr) {
         env->DeleteLocalRef(clazz);
 //        LOGW("can't find method callMethod from clazz ");
         return;
     }
 //    env->CallStaticObjectMethod(clazz, callMethodStr);
-    jstring str = env->NewStringUTF("这是c++中的一个字符串，传递给方法中");
+
     env->CallStaticVoidMethod(clazz, callMethodStr, str);
     env->DeleteLocalRef(clazz);
-
 }
