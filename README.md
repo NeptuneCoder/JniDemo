@@ -41,10 +41,13 @@ APP_ABI := armeabi,x86,x86_64,mips64,armeabi-v7a,arm64-v8a
 ndk.dir=/Users/yh/Documents/android-sdk/android-ndk-r11c
 ```
 
-9. 使用ndk-build 编译需要的so文件
-在jni 的父目录中，使用ndk-build命令，即可生成所有版本的的so文件
-
-10. 将生成的so文件，copy到jniLibs目录中；
+9. 使用ndk-build命令，生成需要的so文件
+在jni 的父目录中（一般就是main目录下），使用ndk-build命令，即可生成所有版本的的so文件
+注：如果ndk-build命令找不到，需要配置一下环境变量
+ 
+ 这个时候，工作已经完成的差不多了。只需要把生成的so文件copy工程中，就可以开始使用了。
+ 
+10. 将生成的so文件，copy到jniLibs目录中；（jniLibs如果没有，在main目录下创建，该目录android stdio 中存放so文件的默认的位置）
 
 11. 配置gradle.properties 中如下参数
 ```
