@@ -20,15 +20,17 @@ javah -d jni jni.yh.com.jnidemo.AndroidJni
 //生成头文件
 javah -d jni 完整的包名+类名
 ```
-3. 在main目录下新建名为jni的文件夹（jni名词可修改，如果修改的话，需要额外的配置）
+在这里需要注意的是，生成的头文件在app/build/intermediates/classes/debug/jni目录下面；
+
+3. 在main目录下新建名为jni的文件夹（jni名词可修改，如果修改的话，需要在gradle里面的配置，不然会出现找不到文件的情况）
 4. 将生成的头文件copy该目录下
 5. 新建具体的实现类AdroidJni.cpp
-6. 新建Android.mk,该文件指定要编译的C源文件和生成的库名，这两个很重要
+6. 新建Android.mk,该文件指定要编译的C源文件和生成的库名，这两个参数很重要，[如果是编译多个文件](#jump)
 ```
 LOCAL_MODULE    := AndroidJni
 LOCAL_SRC_FILES := AndroidJni.cpp
 ```
-7. Application.mk 该文件定义生成那些cup类型的so文件
+7. Application.mk 该文件定义生成那些cup类型的so文件，或者配置参数为 APP_ABI := all
 ```
 APP_ABI := armeabi,x86,x86_64,mips64,armeabi-v7a,arm64-v8a
 ```
@@ -77,7 +79,7 @@ final AndroidJni androidJni = new AndroidJni();
  [android开发艺术探究14章]()
 
 
-#### 二 编译多个源文件
+#### 二 <span id = "jump">编译多个源文件</span>
 需要在android.mk 文件中的LOCAL_SRC_FILES :的值通过 空格 + \ + 空格 +新增加要编译的文件，如下：
  ```
 LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
