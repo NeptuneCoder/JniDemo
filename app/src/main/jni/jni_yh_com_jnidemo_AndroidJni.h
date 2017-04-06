@@ -31,6 +31,14 @@ JNIEXPORT jstring JNICALL Java_jni_yh_com_jnidemo_AndroidJni_setUserName
 JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
   (JNIEnv *, jobject, jstring);
 
+/*
+ * Class:     jni_yh_com_jnidemo_AndroidJni
+ * Method:    callMethod
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_jni_yh_com_jnidemo_AndroidJni_callMethod
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

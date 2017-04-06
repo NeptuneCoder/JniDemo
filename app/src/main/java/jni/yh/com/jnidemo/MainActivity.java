@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, androidJni.setUserName("yh") + "      result：" + androidJni.getResult("23"), Toast.LENGTH_LONG).show();
+                androidJni.callMethod();
             }
         });
 

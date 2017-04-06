@@ -136,3 +136,30 @@ LOCAL_CPPFLAGS  += -std=c++11
 
  ```
  心得：如果需要一些特殊的库，需要在Android.mk 或Application.mk里面配置。
+ 
+ 
+ ### 五 调用Java方法
+ ```
+  jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
+     if (NULL == clazz) {
+ //        LOGW("can't find clazz");
+         return;
+     }
+     jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr", "(Ljava/lang/String;)V");
+     if (NULL == callMethodStr) {
+         env->DeleteLocalRef(clazz);
+ //        LOGW("can't find method callMethod from clazz ");
+         return;
+     }
+ //    env->CallStaticObjectMethod(clazz, callMethodStr);
+     jstring str = env->NewStringUTF("这是c++中的一个字符串，传递给方法中");
+     env->CallStaticVoidMethod(clazz, callMethodStr, str);
+     env->DeleteLocalRef(clazz);
+ ```
+ 
+ 5.1 jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
+ 需要写出完整的路径名；有些资料中，只写了完整的包名，没有写类名；
+ 5.2 jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr", "(Ljava/lang/String;)V");
+ 根据调用的方法是静态的还是非静态的调用不同的方法。最有一个参数为标识符，查看之前的资料有进行说明
+ 5.3     env->CallStaticVoidMethod(clazz, callMethodStr, str);
+ 调用方法时，需要注意方法名，静态方法，非静态方法，有返回类型等，对应的是不同的方法。

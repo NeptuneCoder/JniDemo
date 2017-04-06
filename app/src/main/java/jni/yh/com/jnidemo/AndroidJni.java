@@ -1,5 +1,7 @@
 package jni.yh.com.jnidemo;
 
+import android.util.Log;
+
 /**
  * User: YangHai (1454025171@qq.com)
  * Date: 2017-04-02
@@ -15,5 +17,12 @@ public class AndroidJni {
     public native String getHelloWordText();
 
     public native String setUserName(String name);
+
     public native int getResult(String name);
+
+    public native void callMethod();
+
+    public static void callMethodStr(String result) {
+        Log.i("callMethodStr", "callMethodStr" + result);
+    }
 }

@@ -55,16 +55,23 @@ JNIEXPORT jint JNICALL Java_jni_yh_com_jnidemo_AndroidJni_getResult
     printf("value---------------- = %d", resVlaue);
     return resVlaue + resVlaue1;
 }
-/**
 
-* 工具方法
+JNIEXPORT void JNICALL Java_jni_yh_com_jnidemo_AndroidJni_callMethod
+        (JNIEnv *env, jobject thiz) {
+    jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
+    if (NULL == clazz) {
+//        LOGW("can't find clazz");
+        return;
+    }
+    jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr", "(Ljava/lang/String;)V");
+    if (NULL == callMethodStr) {
+        env->DeleteLocalRef(clazz);
+//        LOGW("can't find method callMethod from clazz ");
+        return;
+    }
+//    env->CallStaticObjectMethod(clazz, callMethodStr);
+    jstring str = env->NewStringUTF("这是c++中的一个字符串，传递给方法中");
+    env->CallStaticVoidMethod(clazz, callMethodStr, str);
+    env->DeleteLocalRef(clazz);
 
-* 作用: 把java中的string 转化成一个c语言中的char数组
-
-* 接受的参数 envjni环境的指针
-
-* jstr 代表的是要被转化的java的string 字符串
-
-* 返回值 : 一个c语言中的char数组的首地址 (char 字符串)
-
-*/
+}
