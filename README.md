@@ -30,12 +30,13 @@ javah -d jni 完整的包名+类名
 LOCAL_MODULE    := AndroidJni
 LOCAL_SRC_FILES := AndroidJni.cpp
 ```
-7. Application.mk 该文件定义生成那些cup类型的so文件，或者配置参数为 APP_ABI := all
+7. Application.mk 该文件定义生成那些cup类型的so文件，或者配置参数为 APP_ABI := all(全部的CPU类型)
 ```
 APP_ABI := armeabi,x86,x86_64,mips64,armeabi-v7a,arm64-v8a
 ```
 
 8. 在local.properties中培训ndk路径，需要配置在环境变量中
+[ndk 的下载地址](https://developer.android.com/ndk/downloads/index.html?hl=zh-cn)
 ```
 ndk.dir=/Users/yh/Documents/android-sdk/android-ndk-r11c
 ```
