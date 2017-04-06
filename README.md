@@ -79,7 +79,7 @@ final AndroidJni androidJni = new AndroidJni();
  [android开发艺术探究14章]()
 
 
-#### 二 <span id = "user-jump">编译多个源文件</span>
+#### 二 <h5 id = "user-jump">编译多个源文件</h5>
 需要在android.mk 文件中的LOCAL_SRC_FILES :的值通过 空格 + \ + 空格 +新增加要编译的文件，如下：
  ```
 LOCAL_SRC_FILES := AndroidJni.cpp \ TestInclude.cpp
