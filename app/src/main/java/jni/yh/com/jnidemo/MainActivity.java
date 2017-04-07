@@ -16,12 +16,9 @@ public class MainActivity extends AppCompatActivity {
         final AndroidJni androidJni = new AndroidJni();
         contentTv.setText(androidJni.getHelloWordText());
 
-        contentTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, androidJni.setUserName("yh") + "      result：" + androidJni.getResult("23"), Toast.LENGTH_LONG).show();
-                androidJni.callMethod();
-            }
+        contentTv.setOnClickListener((v) -> {
+            Toast.makeText(MainActivity.this, androidJni.setUserName("yh") + "      result：" + androidJni.getResult("23"), Toast.LENGTH_LONG).show();
+            androidJni.callMethod();
         });
 
     }
