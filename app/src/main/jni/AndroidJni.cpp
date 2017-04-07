@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "jni_yh_com_jnidemo_AndroidJni.h"
 #include "TestInclude.h"
-
+#include "stdio.h"
 /* This is a trivial JNI example where we use a native method
  * to return a new VM String. See the corresponding Java source
  * file located at:
@@ -61,23 +61,23 @@ JNIEXPORT void JNICALL Java_jni_yh_com_jnidemo_AndroidJni_callMethod
         (JNIEnv *env, jobject thiz) {
 
     jstring str = env->NewStringUTF("这是c++中的一个字符串，调用通用的方法，传递给方法中");
-    customMethod(env,str);
+    customMethod(env, str);
 }
 
 void customMethod(JNIEnv *env, jstring str) {
     jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
     if (NULL == clazz) {
-//        LOGW("can't find clazz");
+        printf("can't find clazz");
         return;
     }
     jmethodID callMethodStr = env->GetStaticMethodID(clazz, "callMethodStr",
                                                      "(Ljava/lang/String;)V");
     if (NULL == callMethodStr) {
         env->DeleteLocalRef(clazz);
-//        LOGW("can't find method callMethod from clazz ");
+        printf("can't find method callMethod from clazz ");
         return;
     }
-//    env->CallStaticObjectMethod(clazz, callMethodStr);
+
 
     env->CallStaticVoidMethod(clazz, callMethodStr, str);
     env->DeleteLocalRef(clazz);
