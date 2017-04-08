@@ -138,7 +138,7 @@ LOCAL_CPPFLAGS  += -std=c++11
  心得：如果需要一些特殊的库，需要在Android.mk 或Application.mk里面配置。
  
  
- ### 五 调用Java方法
+ ### 五 调用Java静态的方法
  ```
   jclass clazz = env->FindClass("jni/yh/com/jnidemo/AndroidJni");
      if (NULL == clazz) {
@@ -195,3 +195,5 @@ void customMethod(JNIEnv *env, jstring str) {
     env->DeleteLocalRef(clazz);
 }
 ```
+
+### 调用java非静态的方法
